@@ -1,5 +1,6 @@
 package com.egrocery_remasterd.egrocery_backend.service;
 
+import com.egrocery_remasterd.egrocery_backend.exception.ResourceNotFoundException;
 import com.egrocery_remasterd.egrocery_backend.model.Product;
 import com.egrocery_remasterd.egrocery_backend.repository.ProductRepository;
 import org.springframework.stereotype.Service;
@@ -39,7 +40,8 @@ public class ProductService {
                     product.setImageUrl(updatedProduct.getImageUrl());
                     return productRepository.save(product);
                 })
-                .orElseThrow(() -> new RuntimeException("Product not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Product not found"));
+
     }
 
     public void deleteProduct(String id) {
