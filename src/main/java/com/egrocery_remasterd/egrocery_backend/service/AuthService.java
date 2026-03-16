@@ -1,7 +1,8 @@
 package com.egrocery_remasterd.egrocery_backend.service;
 
 import com.egrocery_remasterd.egrocery_backend.dto.*;
-import com.egrocery_remasterd.egrocery_backend.model.*;
+import com.egrocery_remasterd.egrocery_backend.model.Role;
+import com.egrocery_remasterd.egrocery_backend.model.User;
 import com.egrocery_remasterd.egrocery_backend.repository.UserRepository;
 import com.egrocery_remasterd.egrocery_backend.security.JwtService;
 import lombok.RequiredArgsConstructor;
@@ -32,7 +33,7 @@ public class AuthService {
 
         userRepository.save(user);
 
-        String token = jwtService.generateToken(user.getEmail());
+        String token = jwtService.generateToken(user.getEmail(), user.getRoles());
 
         return new AuthResponse(token);
     }
