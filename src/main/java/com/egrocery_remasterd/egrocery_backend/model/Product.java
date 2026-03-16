@@ -2,6 +2,9 @@ package com.egrocery_remasterd.egrocery_backend.model;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.PositiveOrZero;
 
 @Document(collection = "products")
 public class Product {
@@ -9,10 +12,19 @@ public class Product {
     @Id
     private String id;
 
+    @NotBlank(message = "Product name is required")
     private String name;
+
+    @NotBlank(message = "Description is required")
     private String description;
+
+    @Positive(message = "Price must be positive")
     private double price;
+
+    @PositiveOrZero(message = "Quantity cannot be negative")
     private int quantity;
+
+    @NotBlank(message = "Category is required")
     private String category;
     private String imageUrl;
 

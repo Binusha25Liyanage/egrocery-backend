@@ -25,8 +25,9 @@ public class ProductService {
         return productRepository.findAll();
     }
 
-    public Optional<Product> getProductById(String id) {
-        return productRepository.findById(id);
+    public Product getProductById(String id) {
+        return productRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Product not found"));
     }
 
     public Product updateProduct(String id, Product updatedProduct) {

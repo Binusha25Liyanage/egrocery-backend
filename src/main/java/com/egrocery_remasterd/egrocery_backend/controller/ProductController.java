@@ -4,6 +4,8 @@ import com.egrocery_remasterd.egrocery_backend.model.Product;
 import com.egrocery_remasterd.egrocery_backend.service.ProductService;
 import org.springframework.web.bind.annotation.*;
 
+import jakarta.validation.Valid;
+
 import java.util.List;
 
 @RestController
@@ -18,7 +20,7 @@ public class ProductController {
     }
 
     @PostMapping
-    public Product createProduct(@RequestBody Product product) {
+    public Product createProduct(@Valid @RequestBody Product product) {
         return productService.createProduct(product);
     }
 
@@ -29,12 +31,12 @@ public class ProductController {
 
     @GetMapping("/{id}")
     public Product getProductById(@PathVariable String id) {
-        return productService.getProductById(id)
-                .orElseThrow(() -> new RuntimeException("Product not found"));
+        return productService.getProductById(id);
     }
 
     @PutMapping("/{id}")
-    public Product updateProduct(@PathVariable String id, @RequestBody Product product) {
+    public Product updateProduct(@PathVariable String id,
+            @Valid @RequestBody Product product) {
         return productService.updateProduct(id, product);
     }
 
