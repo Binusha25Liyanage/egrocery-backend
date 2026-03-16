@@ -3,6 +3,7 @@ package com.egrocery_remasterd.egrocery_backend.security;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.stereotype.Service;
+import com.egrocery_remasterd.egrocery_backend.model.Role;
 
 import java.security.Key;
 import java.util.Date;
